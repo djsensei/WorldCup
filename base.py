@@ -5,8 +5,8 @@ Dan Morris - 6/10/14 - 6/11/14
 '''
 import csv
 import simplejson as json
+import os
 
-''' Not currently used
 country_code = \
 {'Brazil':1,'Croatia':2,'Mexico':3,'Cameroon':4,\
 'Spain':5,'Netherlands':6,'Chile':7,'Australia':8,\
@@ -17,7 +17,7 @@ country_code = \
 'Germany':25,'Portugal':26,'Ghana':27,'United States':28,\
 'Belgium':29,'Algeria':30,'Russia':31,'South Korea':32}
 
-code_country = {v:k for k,v in country_code.items()}'''
+code_country = {v:k for k,v in country_code.items()}
 
 scoring_rules = {'groupgame':1,'grouprank':2,'grouporder':5,'16':4,'8':8,\
 '4':16,'2':32,'1':64}
@@ -29,12 +29,10 @@ knockoutfile = 'knockout.json'
 grouprankfile = 'grouprank.json'
 subfile = 'submissions.json'
 
-entryfiles = ['Dan Morris WC2014 Entry - Sheet1.csv']
-
 def load_all_entries():
   # Reads all entry csv's, creates submission json file
   predictions = {} # keyed by submission name
-  for f in entryfiles:
+  for f in os.listdir('submissions'):
     data = sub_cleanse(submission_scraper(f))
     k = data[7][1] # submission name
     print 'Creating prediction file for ' + k
@@ -53,39 +51,51 @@ def load_all_entries():
 def submission_scraper(entry):
   # Reads in the submission csv file 'entry', returns it as a list of lists
   cells = []
-  with open(entry) as f:
+  with open('submissions/'+entry) as f:
     reader = csv.reader(f)
     for row in reader:
       cells.append(row)
   return cells
 def sub_cleanse(cells):
-  # Fixes errors in the entry sheet
+  # Fixes errors in the entry sheet. Add more errors as they are found!
   for r in range(67):
     for c in range(37):
-      if cells[r][c].strip() == 'Columbia':
+      cells[r][c] = cells[r][c].strip()
+      if cells[r][c] == 'Columbia':
         cells[r][c] = 'Colombia'
+      if cells[r][c] == 'Urugay':
+        cells[r][c] = 'Uruguay'
+      if cells[r][c] == 'Iran :(':
+        cells[r][c] = 'Iran'
   return cells
 def create_entry_dict(cells):
   # Takes matrix of strings from submission_scraper, creates entry dict
   gamepreds = {} # key: gameid. Value: predicted winner (or 'Draw')
   grouprankpreds = {} # key: group letter. Value: ordered list of teams
+  points = country_code # for checking group ranks
+  for c in points:
+    points[c] = 0
   ko = {"16":[],"8":[],"4":[],"2":[],"1":[]} # value: list of teams through
-  with open(matchesfile) as mf:
+  with open(groupmatches) as mf:
     matches = json.loads(mf.read())
   # Group Stage
   for sr in [5, 13, 21, 29, 37, 45, 53, 61]: # starting rows of each group
     # Group Matches
     for r in range(sr,sr+6): # rows of 6 group games in that group
-      team1 = cells[r][6].strip()
-      team2 = cells[r][8].strip()
+      team1 = cells[r][6]
+      team2 = cells[r][8]
       gameid = get_group_game_id(team1,team2,matches)
       if cells[r][5] != '': # Any "x" works. Make sure empty cells are empty!
         if cells[r][7] != '':
           gamepreds[gameid] = 'Draw'
+          points[team1] += 1
+          points[team2] += 1
         else:
           gamepreds[gameid] = team1
+          points[team1] += 3
       else:
         gamepreds[gameid] = team2
+        points[team2] += 3
     # Group Standings + Round of 16
     groupid = group_row[sr]
     gpred = []
@@ -122,10 +132,11 @@ def create_entry_dict(cells):
   # Tiebreaker
   tb = cells[21][36]
   return {'games':gamepreds,'groupranks':grouprankpreds,'knockout':ko,\
-          'tiebreak':tb}
+          'tiebreak':tb,'points':points}
 def check_entry(entry):
   # Checks to make sure each group game is predicted and that the other lists
   #   are the right length
+  # TODO: Use 'points' to check group ranks
   problems = []
   for i in range(48):
     if str(i+1) not in entry['games']:
@@ -133,6 +144,11 @@ def check_entry(entry):
   for g in ['A','B','C','D','E','F','G','H']:
     if len(entry['groupranks'][g]) != 4:
       problems.append('Group ' + g + ' ranks incorrect length')
+    for team in range(1,4):
+      p1 = entry['points'][entry['groupranks'][g][team]]
+      p0 = entry['points'][entry['groupranks'][g][team-1]]
+      if p1 > p0:
+        problems.append('Group ' + g + ' ranks out of order')
   for k in [16,8,4,2,1]:
     if len(entry['knockout'][str(k)]) != k:
       problems.append('Round of ' + str(k) + ' incorrect length')
