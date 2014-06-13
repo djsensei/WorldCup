@@ -6,6 +6,7 @@ Dan Morris - 6/10/14 - 6/11/14
 import csv
 import simplejson as json
 import os
+from operator import itemgetter
 
 country_code = \
 {'Brazil':1,'Croatia':2,'Mexico':3,'Cameroon':4,\
@@ -32,11 +33,13 @@ subfile = 'submissions.json'
 def load_all_entries():
   # Reads all entry csv's, creates submission json file
   predictions = {} # keyed by submission name
+  print 'Creating prediction files...'
   for f in os.listdir('submissions'):
     data = sub_cleanse(submission_scraper(f))
     k = data[7][1] # submission name
-    print 'Creating prediction file for ' + k
+    name = data[5][1] # real name
     entry = create_entry_dict(data)
+    entry['realname'] = name
     problems = check_entry(entry)
     if problems == []:
       predictions[k] = entry
@@ -65,8 +68,6 @@ def sub_cleanse(cells):
         cells[r][c] = 'Colombia'
       if cells[r][c] == 'Urugay':
         cells[r][c] = 'Uruguay'
-      if cells[r][c] == 'Iran :(':
-        cells[r][c] = 'Iran'
   return cells
 def create_entry_dict(cells):
   # Takes matrix of strings from submission_scraper, creates entry dict
@@ -162,17 +163,24 @@ def get_group_game_id(team1,team2,matches):
 def score_all():
   # Scores all submissions
   scores = {}
+  names = {}
   with open(subfile) as sf:
     entries = json.loads(sf.read())
   with open(groupmatches) as f:
     mr = json.loads(f.read())
-  with open(knockoutfile) as f:
+  # Comment out until group stage is over
+  '''with open(knockoutfile) as f:
     kr = json.loads(f.read())
   with open(grouprankfile) as f:
-    rr = json.loads(f.read())
+    rr = json.loads(f.read())'''
+  kr = None # remove once knockout is known
+  rr = None # remove once group ranks are known
+
+
   for e in entries:
     scores[e] = score_entry(entries[e],mr,kr,rr)
-  scorecard(scores)
+    names[e] = entries[e]['realname']
+  scorecard(scores,names)
   return
 def score_entry(entry,mr,kr,rr):
   # Scores a single entry
@@ -180,7 +188,8 @@ def score_entry(entry,mr,kr,rr):
   for g in entry['games']:
     if entry['games'][g] == mr[g]['winner']:
       s += scoring_rules['groupgame']
-  for group in entry['groupranks']:
+  # Commented out until group stage is over
+  '''for group in entry['groupranks']:
     if entry['groupranks'][group] == rr[group]:
       s += scoring_rules['grouporder']
     for t in range(4):
@@ -189,15 +198,19 @@ def score_entry(entry,mr,kr,rr):
   for k in ['16','8','4','2','1']:
     for team in entry['knockout'][k]:
       if team in kr[k]:
-        s += scoring_rules[k]
+        s += scoring_rules[k]'''
   return s
-def scorecard(scores):
-  # Prints a current scorecard. Needs work to actually rank scores.
+def scorecard(scores,names):
+  # Prints a current scorecard.
   scorelist = []
   for s in scores:
-    scorelist.append((s,scores[s]))
-    print s + ': ' + str(scores[s])
+    scorelist.append((s,scores[s],))
+  scorelist = sorted(scorelist, key=itemgetter(1), reverse=True)
+  print 'Current Scores:'
+  for s in scorelist:
+    print '  ' + s[0] + ' (' + names[s[0]] + '): ' + str(s[1])
   return
 
 if __name__ == "__main__":
   load_all_entries()
+  score_all()
