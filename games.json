@@ -1,8 +1,8 @@
 {
   "1": {"winner": "Brazil", "teams": ["Brazil","Croatia"]},
   "2": {"winner": "Mexico", "teams": ["Mexico","Cameroon"]},
-  "3": {"winner": 0, "teams": ["Spain","Netherlands"]},
-  "4": {"winner": 0, "teams": ["Chile","Australia"]},
+  "3": {"winner": "Netherlands", "teams": ["Spain","Netherlands"]},
+  "4": {"winner": "Chile", "teams": ["Chile","Australia"]},
   "5": {"winner": 0, "teams": ["Colombia","Greece"]},
   "6": {"winner": 0, "teams": ["Ivory Coast","Japan"]},
   "7": {"winner": 0, "teams": ["Uruguay","Costa Rica"]},

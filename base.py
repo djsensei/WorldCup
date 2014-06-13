@@ -1,7 +1,7 @@
 '''
 Scripts to process and score World Cup prediction csvs
 
-Dan Morris - 6/10/14 - 6/11/14
+Dan Morris - 6/10/14 - 6/13/14
 '''
 import csv
 import simplejson as json
@@ -30,6 +30,7 @@ knockoutfile = 'knockout.json'
 grouprankfile = 'grouprank.json'
 subfile = 'submissions.json'
 
+''' -- Loading Functions -- '''
 def load_all_entries():
   # Reads all entry csv's, creates submission json file
   predictions = {} # keyed by submission name
@@ -154,20 +155,80 @@ def check_entry(entry):
     if len(entry['knockout'][str(k)]) != k:
       problems.append('Round of ' + str(k) + ' incorrect length')
   return problems
+def load_submissions():
+  # returns a dict of submissions from subfile
+  with open(subfile) as sf:
+    subs = json.loads(sf.read())
+  return subs
+def load_games():
+  # returns a dict of group games from groupmatches
+  with open(groupmatches) as f:
+    mr = json.loads(f.read())
+  return mr
+''' ----------------------- '''
+
+''' -- Helper Functions -- '''
 def get_group_game_id(team1,team2,matches):
   # returns the game # between two teams in group play
   for g in matches:
     if team1 in matches[g]['teams'] and team2 in matches[g]['teams']:
       return g
   return None
+def select_pickers(pick,game=None,koround=None):
+  # Returns a list of all entries who picked a certain outcome.
+  # Pick can either be a team name or 'Draw'
+  # Either game or koround should exist, but not both.
+  #   If game exists, it should be a game id from the group stage
+  #   If koround exists, it should be one of ['16','8','4','2','1']
+  entries = load_submissions()
+  selected = []
+  if game != None:
+    for e in entries:
+      if pick in entries[e]['games'][game]:
+        selected.append(e)
+  elif koround != None:
+    for e in entries:
+      if pick in entries[e]['knockout'][koround]:
+        selected.append(e)
+  else:
+    print "Improper select_pickers call. Check your code."
+  return selected
+def realname_from_entryname(entryname):
+  # Given an entry name, finds the real name associated with it
+  subs = load_submissions()
+  for s in subs:
+    if s == entryname:
+      return subs[s]['realnames']
+  return None
+def game_pick_distributions():
+  # Prints a list of group games and the number of people who made each pick
+  subs = load_submissions()
+  mr = load_games()
+  games = [None] # list of game pick dicts: games[0] = None for indexing
+  for i in range(1,49):
+    team1 = mr[str(i)]['teams'][0]
+    team2 = mr[str(i)]['teams'][1]
+    games.append({team1:0,team2:0,'Draw':0})
+  for s in subs:
+    for g in subs[s]['games']:
+      p = subs[s]['games'][g]
+      games[int(g)][p] += 1
+  for i in range(1,49):
+    team1 = mr[str(i)]['teams'][0]
+    team2 = mr[str(i)]['teams'][1]
+    print 'Game '+str(i)+' picks: '+team1+'-'+str(games[i][team1])+' '+\
+          team2+'-'+str(games[i][team2])+' '+'Draw-'+str(games[i]['Draw'])
+  return
+
+''' ---------------------- '''
+
+''' -- Scoring Functions -- '''
 def score_all():
   # Scores all submissions
   scores = {}
   names = {}
-  with open(subfile) as sf:
-    entries = json.loads(sf.read())
-  with open(groupmatches) as f:
-    mr = json.loads(f.read())
+  entries = load_submissions()
+  mr = load_games()
   # Comment out until group stage is over
   '''with open(knockoutfile) as f:
     kr = json.loads(f.read())
@@ -210,7 +271,11 @@ def scorecard(scores,names):
   for s in scorelist:
     print '  ' + s[0] + ' (' + names[s[0]] + '): ' + str(s[1])
   return
+''' ----------------------- '''
 
 if __name__ == "__main__":
-  load_all_entries()
+  #load_all_entries()
   score_all()
+  #print select_pickers("Spain",koround="2")
+  #print select_pickers("Netherlands",game="3")
+  #game_pick_distributions()
