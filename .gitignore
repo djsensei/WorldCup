@@ -3,3 +3,10 @@
 *.py[co]
 *.sw[po]
 .ipynb_checkpoints/
+
+## virtualenv
+ENV/
+
+## Data directory
+# Let's not upload the data to github
+submissions/
