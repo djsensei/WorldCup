@@ -1,13 +1,14 @@
 import csv
 import simplejson as json
-
+from os.path import join as joinpath
 
 # Filenames
 # TODO: move out of this file
-groupmatches = 'games.json'
-knockoutfile = 'knockout.json'
-grouprankfile = 'grouprank.json'
-subfile = 'submissions.json'
+DATADIR = 'data'
+GROUP_MATCH_FILE = joinpath(DATADIR, 'games.json')
+KNOCKOUT_MATCH_FILE = joinpath(DATADIR, 'knockout.json')
+GROUP_RANK_FILE = joinpath(DATADIR, 'grouprank.json')
+SUBMISSIONS_FILE = joinpath(DATADIR, 'submissions.json')
 
 
 class Bracket(object):
@@ -65,7 +66,7 @@ class Bracket(object):
             points[c] = 0
         #  value:  list of teams through
         ko = {"16": [], "8": [], "4": [], "2": [], "1": []}
-        with open(groupmatches) as mf:
+        with open(GROUP_MATCH_FILE) as mf:
             matches = json.loads(mf.read())
 
         # Group Stage
