@@ -2,3 +2,4 @@
 ##
 *.py[co]
 *.sw[po]
+.ipynb_checkpoints/
