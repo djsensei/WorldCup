@@ -27,16 +27,17 @@ class Bracket(object):
 
         self.realname = None
         self.name = None
-        self.predictions = None
+        self.games = None
+        self.group_rankings = None
+        self.knockout_picks = None
+        self.team_points_verify = None
+        self.tie_breaker = None
 
         if csv_file is not None:
-            self.load_from_csv(csv_file)
-            """
             try:
                 self.load_from_csv(csv_file)
             except:
                 warn('Unable to load from csv {}'.format(csv_file))
-            """
 
     def load_from_csv(self, fname):
 
@@ -58,22 +59,26 @@ class Bracket(object):
         self.name = cells[7][1]
         self.realname = cells[5][1]
 
-        self.predictions = self._create_entry_dict(cells)
+        self._load_predictions(cells)
 
         # TODO
         # check for problems here
         # self.check_entry()
 
-    def _create_entry_dict(self, cells):
+    def _load_predictions(self, cells):
         """Takes matrix of strings from submissions"""
-        # Takes matrix of strings from submission_scraper, creates entry dict
-        gamepreds = {}  # key: gameid. Value: predicted winner (or 'Draw')
-        grouprankpreds = {}  # key: group letter. Value: ordered list of teams
-        points = country_code  # for checking group ranks
-        for c in points:
-            points[c] = 0
-        #  value:  list of teams through
+        self.games = {}
+        # key: gameid. Value: predicted winner (or 'Draw')
+
+        self.group_rankings = {}
+        # key: group letter. Value: ordered list of teams
+
+        # for checking group ranks
+        points_check = {k: 0 for k, v in country_code.items()}
+
         ko = {"16": [], "8": [], "4": [], "2": [], "1": []}
+        # value:  list of teams through
+
         with open(GROUP_MATCH_FILE) as mf:
             matches = json.loads(mf.read())
 
@@ -88,15 +93,15 @@ class Bracket(object):
                 if cells[r][5] != '':
                     # Any "x" works. Make sure empty cells are empty!
                     if cells[r][7] != '':
-                        gamepreds[gameid] = 'Draw'
-                        points[team1] += 1
-                        points[team2] += 1
+                        self.games[gameid] = 'Draw'
+                        points_check[team1] += 1
+                        points_check[team2] += 1
                     else:
-                        gamepreds[gameid] = team1
-                        points[team1] += 3
+                        self.games[gameid] = team1
+                        points_check[team1] += 3
                 else:
-                    gamepreds[gameid] = team2
-                    points[team2] += 3
+                    self.games[gameid] = team2
+                    points_check[team2] += 3
             # Group Standings + Round of 16
             groupid = group_row[sr]
             gpred = []
@@ -105,7 +110,9 @@ class Bracket(object):
                 ko["16"].append(cells[sr+i][11])
             for i in [2, 3]:
                 gpred.append(cells[sr+i][11])
-            grouprankpreds[groupid] = gpred
+            self.group_rankings[groupid] = gpred
+
+        self.team_points_verify = points_check
 
         # Knockout Stage
         # Round of 8 (R16 winners)
@@ -135,15 +142,10 @@ class Bracket(object):
         else:
             ko["1"].append(cells[14][32])
 
+        self.knockout_picks = ko
+
         # Tiebreaker
-        tb = cells[21][36]
-        return {
-            'games': gamepreds,
-            'groupranks': grouprankpreds,
-            'knockout': ko,
-            'tiebreak': tb,
-            'points': points
-            }
+        self.tie_breaker = cells[21][36]
 
     def _get_group_game_id(self, team1, team2, matches):
         # returns the game # between two teams in group play
