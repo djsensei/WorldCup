@@ -1,5 +1,6 @@
 import csv
 import simplejson as json
+from warnings import warn
 from os.path import join as joinpath
 
 # Filenames
@@ -13,7 +14,7 @@ SUBMISSIONS_FILE = joinpath(DATADIR, 'submissions.json')
 
 class Bracket(object):
 
-    def __init__(self):
+    def __init__(self, csv_file=None):
         """
         This is a base class for a bracket.
         Each submission is a bracket.
@@ -28,6 +29,15 @@ class Bracket(object):
         self.name = None
         self.predictions = None
 
+        if csv_file is not None:
+            self.load_from_csv(csv_file)
+            """
+            try:
+                self.load_from_csv(csv_file)
+            except:
+                warn('Unable to load from csv {}'.format(csv_file))
+            """
+
     def load_from_csv(self, fname):
 
         # submission_scaper
@@ -39,18 +49,16 @@ class Bracket(object):
 
         # sub_cleanse
         # Spelling mistakes hack
-        for r in range(67):
-            for c in range(37):
-                cells[r][c] = cells[r][c].strip()
-                if cells[r][c] == 'Columbia':
-                    cells[r][c] = 'Colombia'
-                if cells[r][c] == 'Urugay':
-                    cells[r][c] = 'Uruguay'
+        for idx, row in enumerate(cells):
+            nrow = [r.strip() for r in row]
+            nrow = [r.replace('Columbia', 'Colombia') for r in nrow]
+            nrow = [r.replace('Urugay', 'Uruguay') for r in nrow]
+            cells[idx] = nrow
 
         self.name = cells[7][1]
         self.realname = cells[5][1]
 
-        self.predictions = self.create_entry_dict(cells)
+        self.predictions = self._create_entry_dict(cells)
 
         # TODO
         # check for problems here
