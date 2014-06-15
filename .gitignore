@@ -8,5 +8,5 @@
 ENV/
 
 ## Data directory
-# Let's not upload the data to github
-submissions/
+# Let's not upload the XLSX data to github
+submissions/xlsx
