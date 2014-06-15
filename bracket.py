@@ -6,7 +6,7 @@ from os.path import join as joinpath
 # Filenames
 # TODO: move out of this file
 DATADIR = 'data'
-GROUP_MATCH_FILE = joinpath(DATADIR, 'games.json')
+GROUP_MATCH_FILE = joinpath(DATADIR, 'results_group.json')
 KNOCKOUT_MATCH_FILE = joinpath(DATADIR, 'knockout.json')
 GROUP_RANK_FILE = joinpath(DATADIR, 'grouprank.json')
 SUBMISSIONS_FILE = joinpath(DATADIR, 'submissions.json')
@@ -64,6 +64,28 @@ class Bracket(object):
         # TODO
         # check for problems here
         # self.check_entry()
+
+        # Calculate score immediately upon loading
+        self.get_score()
+
+    def get_score(self):
+        """Calculate bracket's score"""
+
+        score = 0
+
+        # Load results of group games
+        with open(GROUP_MATCH_FILE) as infile:
+            mr = json.loads(infile.read())
+
+        for game in self.games:
+            if self.games[game] == mr[game]['winner']:
+                score += scoring_rules['groupgame']
+
+        self.score = score
+        return score
+
+
+    # Internal Methods
 
     def _load_predictions(self, cells):
         """Takes matrix of strings from submissions"""
@@ -155,9 +177,10 @@ class Bracket(object):
         return None
 
     def __repr__(self):
-        return "<Bracket '{}' by '{}'>".format(
+        return "<Bracket '{}' by '{}': Score {:02}>".format(
             self.name,
-            self.realname
+            self.realname,
+            self.score,
             )
 
 
@@ -175,4 +198,17 @@ country_code = {
 group_row = {
     5: 'A', 13: 'B', 21: 'C', 29: 'D',
     37: 'E', 45: 'F', 53: 'G', 61: 'H'
+    }
+
+scoring_rules = {
+    # These are the number of points awarded
+    # for designated prediction.
+    'groupgame': 1,
+    'grouprank': 2,
+    'grouporder': 5,
+    '16': 4,
+    '8': 8,
+    '4': 16,
+    '2': 32,
+    '1': 64
     }
