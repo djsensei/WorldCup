@@ -1,0 +1,27 @@
+
+# 1: Get files
+
+First, download all submission files from Google Drive
+Convert to xlsx as you download
+Google provides a zip file, unzip it. 
+
+# 2: Install xlsx2csv
+using a python converter. I installed as follows: 
+
+    virtualenv ENV
+    source ENV/bin/activate
+    pip install xlsx2xsv
+
+# 3. Short script to convert
+Ad hoc script in ipython to do the conversions. 
+Adjust this code for proper file / directory locations
+
+    import os
+    xls_files = [f for f in os.listdir('.') if f.endswith('.xlsx')]
+
+    from xlsx2csv import Xlsx2csv as xc
+    for f in xls_files: 
+        csv_name = ''.join(f.split(' ')[:2]) + '.csv'
+        xc(f).convert(csv_name, sheetid=1)
+
+# Done.

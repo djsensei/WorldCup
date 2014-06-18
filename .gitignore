@@ -1,0 +1,12 @@
+## Local Files and temps
+##
+*.py[co]
+*.sw[po]
+.ipynb_checkpoints/
+
+## virtualenv
+ENV/
+
+## Data directory
+# Let's not upload the XLSX data to github
+submissions/xlsx
