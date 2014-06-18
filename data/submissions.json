@@ -723,6 +723,187 @@
 },
 "tiebreak": "192"
 },
+"Anya": {
+"realname": "Anya",
+"knockout": {
+"1": [
+"Brazil"
+],
+"8": [
+"Brazil",
+"Spain",
+"Colombia",
+"Uruguay",
+"France",
+"Argentina",
+"Germany",
+"Belgium"
+],
+"2": [
+"Brazil",
+"Argentina"
+],
+"4": [
+"Brazil",
+"Germany",
+"Spain",
+"Argentina"
+],
+"16": [
+"Brazil",
+"Croatia",
+"Spain",
+"Netherlands",
+"Colombia",
+"Ivory Coast",
+"Uruguay",
+"Italy",
+"France",
+"Ecuador",
+"Argentina",
+"Nigeria",
+"Germany",
+"Portugal",
+"Belgium",
+"Algeria"
+]
+},
+"groupranks": {
+"A": [
+"Brazil",
+"Croatia",
+"Mexico",
+"Cameroon"
+],
+"C": [
+"Colombia",
+"Ivory Coast",
+"Japan",
+"Greece"
+],
+"B": [
+"Spain",
+"Netherlands",
+"Chile",
+"Australia"
+],
+"E": [
+"France",
+"Ecuador",
+"Switzerland",
+"Honduras"
+],
+"D": [
+"Uruguay",
+"Italy",
+"Costa Rica",
+"England"
+],
+"G": [
+"Germany",
+"Portugal",
+"Ghana",
+"United States"
+],
+"F": [
+"Argentina",
+"Nigeria",
+"Bosnia-Herzegovina",
+"Iran"
+],
+"H": [
+"Belgium",
+"Algeria",
+"South Korea",
+"Russia"
+]
+},
+"points": {
+"Brazil": 7,
+"Netherlands": 6,
+"Italy": 9,
+"Colombia": 9,
+"Costa Rica": 3,
+"France": 6,
+"United States": 3,
+"Croatia": 6,
+"Ivory Coast": 3,
+"Iran": 6,
+"Switzerland": 0,
+"Honduras": 3,
+"Argentina": 9,
+"Cameroon": 3,
+"Nigeria": 0,
+"Ecuador": 9,
+"Ghana": 0,
+"Australia": 0,
+"England": 0,
+"Algeria": 0,
+"Portugal": 6,
+"Mexico": 1,
+"Uruguay": 6,
+"Russia": 3,
+"Germany": 9,
+"Chile": 3,
+"Greece": 0,
+"Belgium": 9,
+"Japan": 6,
+"South Korea": 6,
+"Bosnia-Herzegovina": 3,
+"Spain": 9
+},
+"games": {
+"28": "Nigeria",
+"48": "Algeria",
+"29": "Germany",
+"24": "Italy",
+"25": "France",
+"26": "Ecuador",
+"27": "Argentina",
+"20": "Netherlands",
+"21": "Draw",
+"22": "Japan",
+"23": "Uruguay",
+"46": "Draw",
+"47": "Belgium",
+"44": "Draw",
+"45": "Germany",
+"42": "Draw",
+"43": "Argentina",
+"40": "Costa Rica",
+"41": "Draw",
+"1": "Brazil",
+"3": "Spain",
+"2": "Draw",
+"5": "Colombia",
+"4": "Chile",
+"7": "Uruguay",
+"6": "Ivory Coast",
+"9": "Ecuador",
+"8": "Italy",
+"13": "Germany",
+"12": "Nigeria",
+"11": "Argentina",
+"10": "France",
+"39": "Uruguay",
+"38": "Ivory Coast",
+"15": "Belgium",
+"14": "Ghana",
+"17": "Brazil",
+"16": "Draw",
+"33": "Brazil",
+"18": "Croatia",
+"31": "Belgium",
+"30": "Portugal",
+"37": "Colombia",
+"36": "Netherlands",
+"35": "Spain",
+"34": "Croatia",
+"19": "Draw",
+"32": "Algeria"
+},
+"tiebreak": "138"
+},
 "Farzin": {
 "realname": "Farzin Lalezari",
 "knockout": {

@@ -1,0 +1,80 @@
+Part 0,,,,,Part 1,,,,,Part 2,,,,Part 3,,,,,,Part 4,,,,,Part 5,,,,,Part 6,,,,,Part 7,
+Submission info,,,,,Group Games,,,,,Group Resulting Ranks,,,,Round of 16,,,,,,Quarter Finals,,,,,Semi-Finals,,,,,Finals,,,,,Tie-breaker!,
+"Fill out the fields below.
+
+In this spreadsheet, cells you should change are gray. 
+Please don't change other cells. Do not add rows or columns.
+If you spot any mistakes, send us a message.",,,,,"Place an 'x' next to the winner of each match up. 
+
+I'll fill out the first three results for you as an example: Brazil beats Croatia, Cameroon beats Mexico, and Brazil ties with Mexico. ",,,,,"Re-order the teams to reflect resulting rank after group stage of the World Cup. 
+
+Don't re-order the numbers, re order the teams. The order currently shown is the order of the draw. Only the top two teams will progress to the next round. ",,,,"Place an 'x' next to the winner of each match up. 
+
+I'll fill out the first result for you as an example: B2 defeats A1. 
+There ARE NO TIES in the Round of 16! ",,,,,,Place an 'x' next to the winner of each match up.,,,,,Place an 'x' next to the winner of each match up.,,,,,Place an 'x' next to the winner of each match up.,,,,,Answer the tie-breaker question. ,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,Pool A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Your Name: ,Matt Frantz,,,,X,Brazil,,Croatia,,1,Brazil,,,,,Match 49 (A1 vs B2),,,,,,Match 57 (W49 vs W50),,,,,,,,,,,,,,
+,,,,,X,Mexico ,,Cameroon,,2,Mexico ,,,,,A1,,B2,,,X,Netherlands,,,,,,,,,,,,,,
+Submission Name: ,Lionel Messi's PED Examiner,,,,X,Brazil,X,Mexico ,,3,Croatia,,,,,Brazil,X,Netherlands,,,,Columbia,,,,,,,,,,,,,,
+,"This will be shown on the scoreboard. Must be unique (important e.g. if you have multiple submissions or if your name is ""Dave"") ",,,,X,Cameroon,X,Croatia,,4,Cameroon,,,,,,,,,,,,,,,,Match 61 (W57 vs. W58),,,,,,,,,
+,,,,,,Cameroon,X,Brazil,,,,,,,,Match 51 (B1 vs A2),,,,,,,,,,X,Netherlands,,,,,,,,,
+,,,,,,Croatia,X,Mexico ,,,,,,,,B1,,A2,,,,,,,,,Germany,,,,,,,,,
+,,,,,,,,,,,,,,,X,Spain,,Croatia,,,,Match 58 (W53 vs W54),,,,,,,,,,,,,,
+Don't forget to send $10! ,,,,Pool B,,,,,,,,,,,,,,,,,,Switzerland,,,,,,,,,,Finals (W61 vs W62),,,,Tie-breaker Question
+"This spreadsheet must be completed by kick-off of the opening game of the World Cup, on June 12 2014",,,,,,Spain,X,Netherlands,,1,Netherlands,,,,,Match 50 (C1 vs D2),,,,,X,Germany,,,,,,,,,X,Netherlands,,,,"How many total number of goals will be score in the tournament?  
+
+(Answer should be a single integer. Do NOT count goals scored in penalty-shootouts.)"
+,,,,,X,Chile,,Australia,,2,Spain,,,,,C1,,D2,,,,,,,,,,,,,,Spain,,,,
+,,,,,,Australia,X,Netherlands,,3,Chile,,,,X,Columbia,,Costa Rica,,,,,,,,,,,,,,,,,,
+,,,,,X,Spain,,Chile,,4,Australia,,,,,,,,,,,Match 59 (W51 vs W52),,,,,,,,,,,,,,
+,,,,,,Australia,X,Spain,,,,,,,,Match 52 (D1 vs C2),,,,,X,Spain,,,,,,,,,,,,,,
+,,,,,X,Netherlands,X,Chile,,,,,,,,D1,,C2,,,,Uruguay,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,X,Uruguay,,Greece,,,,,,,,,Match 62 (W59 vs. W60),,,,,3rd Place Game (L61 vs. L62),,,,
+,,,,Pool C,,,,,,,,,,,,,,,,,,,,,,X,Spain,,,,X,Germany,,,,Your Answer:
+,,,,,X,Columbia,,Greece,,1,Columbia,,,,,Match 53 (F1 vs E2),,,,,,,,,,,Argentina,,,,,Argentina,,,,198
+,,,,,X,Ivory Coast,X,Japan,,2,Ivory Coast,,,,,E1,,F2,,,,Match 60 (W55 vs W56),,,,,,,,,,,,,,
+,,,,,X,Columbia,X,Ivory Coast,,3,Japan,,,,X,Switzerland,,Bosnia-Herzegovina,,,X,Argentina,,,,,,,,,,,,,,
+,,,,,X,Japan,,Greece,,4,Greece,,,,,,,,,,,Belgium,,,,,,,,,,,,,,
+,,,,,,Greece,X,Ivory Coast,,,,,,,,Match 55 (F1 vs E2),,,,,,,,,,,,,,,,,,,,
+,,,,,,Japan,X,Columbia,,,,,,,,F1,,E2,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,X,Argentina,,Ecuador,,,,,,,,,,,,,,,,,,
+,,,,Pool D,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Uruguay,,Costa Rica,,1,Italy,,,,,Match 54 (G1 vs H2),,,,,,,,,,,,,,,,,,,,
+,,,,,,England,X,Italy,,2,Uruguay,,,,,G1,,H2,,,,,,,,,,,,,,,,,,
+,,,,,X,Uruguay,X,England,,3,England,,,,X,Germany,,Algeria,,,,,,,,,,,,,,,,,,
+,,,,,X,Italy,,Costa Rica,,4,Costa Rica,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Costa Rica,X,England,,,,,,,,Match 56 (H1 vs G2),,,,,,,,,,,,,,,,,,,,
+,,,,,X,Italy,X,Uruguay,,,,,,,,H1,,G2,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,X,Belgium,,Portugal,,,,,,,,,,,,,,,,,,
+,,,,Pool E,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Switzerland,,Ecuador,,1,France,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,France,,Honduras,,2,Switzerland,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Switzerland,X,France,,3,Ecuador,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Honduras,X,Ecuador,,4,Honduras,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Ecuador,X,France,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Honduras,X,Switzerland,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,Pool F,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Argentina,,Bosnia-Herzegovina,,1,Argentina,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Iran,X,Nigeria,,2,Bosnia-Herzegovina,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Argentina,,Iran,,3,Nigeria,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Nigeria,X,Bosnia-Herzegovina,,4,Iran,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Bosnia-Herzegovina,,Iran,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Nigeria,X,Argentina,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,Pool G,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Germany,,Portugal,,1,Germany,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Ghana,,United States,,2,Portugal,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Germany,,Ghana,,3,Ghana,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,United States,X,Portugal,,4,United States,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Portugal,,Ghana,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,United States,X,Germany,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,Pool H,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Belgium,,Algeria,,1,Belgium,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Russia,,South Korea,,2,Russia,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,Belgium,,Russia,,3,South Korea,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,X,South Korea,,Algeria,,4,Algeria,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,Algeria,X,Russia,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,South Korea,X,Belgium,,,,,,,,,,,,,,,,,,,,,,,,,,,,
