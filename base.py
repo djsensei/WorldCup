@@ -1,7 +1,7 @@
 '''
 Scripts to process and score World Cup prediction csvs
 
-Dan Morris - 6/10/14 - 6/13/14
+Dan Morris - 6/10/14 - 6/18/14
 '''
 import csv
 import simplejson as json
@@ -32,7 +32,8 @@ subfile = 'submissions.json'
 
 ''' -- Loading Functions -- '''
 def load_all_entries():
-  # Reads all entry csv's, creates submission json file
+  # Reads all entry csvs in the Submissions folder
+  # Creates submission json file
   predictions = {} # keyed by submission name
   print 'Creating prediction files...'
   for f in os.listdir('submissions'):
@@ -55,7 +56,7 @@ def load_all_entries():
 def submission_scraper(entry):
   # Reads in the submission csv file 'entry', returns it as a list of lists
   cells = []
-  with open('submissions/'+entry) as f:
+  with open('submissions/'+entry,'rb') as f:
     reader = csv.reader(f)
     for row in reader:
       cells.append(row)
@@ -219,7 +220,6 @@ def game_pick_distributions():
     print 'Game '+str(i)+' picks: '+team1+'-'+str(games[i][team1])+' '+\
           team2+'-'+str(games[i][team2])+' '+'Draw-'+str(games[i]['Draw'])
   return
-
 ''' ---------------------- '''
 
 ''' -- Scoring Functions -- '''
@@ -274,8 +274,4 @@ def scorecard(scores,names):
 ''' ----------------------- '''
 
 if __name__ == "__main__":
-  #load_all_entries()
   score_all()
-  #print select_pickers("Spain",koround="2")
-  #print select_pickers("Netherlands",game="3")
-  #game_pick_distributions()
