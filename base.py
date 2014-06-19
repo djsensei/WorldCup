@@ -7,6 +7,7 @@ import csv
 import simplejson as json
 import os
 from operator import itemgetter
+from bracket import *
 
 country_code = \
 {'Brazil':1,'Croatia':2,'Mexico':3,'Cameroon':4,\
@@ -166,6 +167,13 @@ def load_games():
   with open(groupmatches) as f:
     mr = json.loads(f.read())
   return mr
+''' Loading Functions using bracket.py'''
+def load_all_entries_bracket():
+  # Uses the bracket.py modules to load all entries into a list
+  entries = []
+  for f in os.listdir('submissions/csv'):
+    entries.append(Bracket('submissions/csv/'+f))
+  return entries
 ''' ----------------------- '''
 
 ''' -- Helper Functions -- '''
@@ -271,7 +279,18 @@ def scorecard(scores,names):
   for s in scorelist:
     print '  ' + s[0] + ' (' + names[s[0]] + '): ' + str(s[1])
   return
+def scorecard_bracket(entries):
+  # Prints bracket.py-loaded list of entries by score
+  all_scores = {}
+  for bracket in entries:
+    k = '{} ({})'.format(bracket.name, bracket.realname)
+    all_scores[k] = bracket.score
+  scorelist = sorted(all_scores.iteritems(), key=itemgetter(1), reverse=True)
+  for n,s in scorelist:
+    print "{} : {}".format(n,s)
+  return
 ''' ----------------------- '''
 
 if __name__ == "__main__":
-  score_all()
+  entries = load_all_entries_bracket()
+  scorecard_bracket(entries)
