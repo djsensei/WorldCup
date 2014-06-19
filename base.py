@@ -26,7 +26,7 @@ scoring_rules = {'groupgame':1,'grouprank':2,'grouporder':5,'16':4,'8':8,\
 
 group_row = {5:'A',13:'B',21:'C',29:'D',37:'E',45:'F',53:'G',61:'H'}
 
-groupmatches = 'games.json'
+groupmatches = 'data/results_group.json'
 knockoutfile = 'knockout.json'
 grouprankfile = 'grouprank.json'
 subfile = 'submissions.json'
@@ -227,6 +227,25 @@ def game_pick_distributions():
     team2 = mr[str(i)]['teams'][1]
     print 'Game '+str(i)+' picks: '+team1+'-'+str(games[i][team1])+' '+\
           team2+'-'+str(games[i][team2])+' '+'Draw-'+str(games[i]['Draw'])
+  return
+def game_pick_distributions_bracket():
+  # Uses bracket.py entries to print distribution of picks
+  entries = load_all_entries_bracket()
+  mr = load_games()
+  allgames = [None] # list of game pick dicts: games[0] = None for indexing
+  for i in range(1,49):
+    team1 = mr[str(i)]['teams'][0]
+    team2 = mr[str(i)]['teams'][1]
+    allgames.append({team1:0,team2:0,'Draw':0})
+  for e in entries:
+    for g in e.games:
+      p = e.games[g]
+      allgames[int(g)][p] += 1
+  for i in range(1,49):
+    team1 = mr[str(i)]['teams'][0]
+    team2 = mr[str(i)]['teams'][1]
+    print 'Game '+str(i)+' picks: '+team1+'-'+str(allgames[i][team1])+' '+\
+          team2+'-'+str(allgames[i][team2])+' '+'Draw-'+str(allgames[i]['Draw'])
   return
 ''' ---------------------- '''
 
