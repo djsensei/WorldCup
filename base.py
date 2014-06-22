@@ -202,6 +202,21 @@ def select_pickers(pick,game=None,koround=None):
   else:
     print "Improper select_pickers call. Check your code."
   return selected
+def select_pickers_bracket(pick,game=None,koround=None):
+  # Same as above, uses bracket class
+  entries = load_all_entries_bracket()
+  selected = []
+  if game != None:
+    for e in entries:
+      if pick in e.games[game]:
+        selected.append(e)
+  elif koround != None:
+    for e in entries:
+      if pick in e.knockout_picks[koround]:
+        selected.append(e)
+  else:
+    print "Improper select_pickers call. Check your code."
+  return selected
 def realname_from_entryname(entryname):
   # Given an entry name, finds the real name associated with it
   subs = load_submissions()
