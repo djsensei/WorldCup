@@ -1,1 +1,8 @@
-{"A": [], "C": [], "B": [], "E": [], "D": [], "G": [], "F": [], "H": []}
+{"A": ["Brazil","Mexico","Croatia","Cameroon"],
+  "C": ["Colombia","Greece","Ivory Coast","Japan"],
+  "B": ["Netherlands","Chile","Spain","Australia"],
+  "E": ["France","Switzerland","Ecuador","Honduras"],
+  "D": ["Costa Rica","Uruguay","Italy","England"],
+  "G": ["Germany","United States","Portugal","Ghana"],
+  "F": ["Argentina","Nigeria","Bosnia-Herzegovina","Iran"],
+  "H": ["Belgium","Algeria","Russia","South Korea"]}

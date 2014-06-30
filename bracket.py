@@ -73,13 +73,30 @@ class Bracket(object):
 
         score = 0
 
-        # Load results of group games
+        # Group Games
         with open(GROUP_MATCH_FILE) as infile:
             mr = json.loads(infile.read())
-
         for game in self.games:
             if self.games[game] == mr[game]['winner']:
                 score += scoring_rules['groupgame']
+
+        # Group Ranks
+        with open(GROUP_RANK_FILE) as infile:
+            gr = json.loads(infile.read())
+        for group in self.group_rankings:
+            for i in range(4):
+                if self.group_rankings[group][i] == gr[group][i]:
+                    score += scoring_rules['grouprank']
+            if self.group_rankings[group] == gr[group]:
+                score += scoring_rules['grouporder']
+
+        # Knockout Picks
+        with open(KNOCKOUT_MATCH_FILE) as infile:
+            kr = json.loads(infile.read())
+        for r in ['16','8','4','2','1']:
+            for team in self.knockout_picks[r]:
+                if team in kr[r]:
+                    score += scoring_rules[r]
 
         self.score = score
         return score

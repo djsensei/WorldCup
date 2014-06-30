@@ -315,6 +315,7 @@ def scorecard(scores,names):
   return
 def scorecard_bracket(entries):
   # Prints bracket.py-loaded list of entries by score
+  print ''
   all_scores = {}
   for bracket in entries:
     k = '{} ({})'.format(bracket.name, bracket.realname)
@@ -322,6 +323,7 @@ def scorecard_bracket(entries):
   scorelist = sorted(all_scores.iteritems(), key=itemgetter(1), reverse=True)
   for n,s in scorelist:
     print "{} : {}".format(n,s)
+  print ''
   return
 ''' ----------------------- '''
 
