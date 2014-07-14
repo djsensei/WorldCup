@@ -1,7 +1,7 @@
 {
   "16":["Brazil","Mexico","Colombia","Greece","Netherlands","Chile","France","Switzerland","Costa Rica","Uruguay","Germany","United States","Argentina","Nigeria","Belgium","Algeria"],
-  "8":["Brazil","Netherlands","France","Costa Rica","Colombia","Germany"],
-  "4":[],
-  "2":[],
-  "1":[]
+  "8":["Brazil","Netherlands","France","Costa Rica","Colombia","Germany","Argentina","Belgium"],
+  "4":["Germany","Brazil","Argentina","Netherlands"],
+  "2":["Germany","Argentina"],
+  "1":["Germany"]
 }
